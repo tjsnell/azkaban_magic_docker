@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<azkaban-users>
+  <user username="azkaban" password="azkaban" roles="admin" groups="azkaban" />
+  <user username="admin" password="admin" roles="admin" groups="azkaban" />
+  
+  <role name="admin" permissions="ADMIN" />
+  
+  <group name="azkaban" roles="admin" />
+</azkaban-users>

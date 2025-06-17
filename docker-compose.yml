@@ -1,0 +1,35 @@
+services:
+  azkaban:
+    image: openjdk:11-jdk-slim
+    ports:
+      - "8081:8081"
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=azkaban
+      - MYSQL_USER=azkaban
+      - MYSQL_PASSWORD=azkaban
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    volumes:
+      - ./azkaban-setup.sh:/setup.sh
+      - azkaban_data:/opt/azkaban
+    command: ["/bin/sh", "/setup.sh"]
+    
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: azkaban
+      MYSQL_DATABASE: azkaban
+      MYSQL_USER: azkaban
+      MYSQL_PASSWORD: azkaban
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  azkaban_data:

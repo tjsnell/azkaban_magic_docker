@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker compose:*)"
+    ],
+    "deny": []
+  }
+}
